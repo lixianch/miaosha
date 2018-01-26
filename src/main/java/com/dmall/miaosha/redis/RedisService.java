@@ -19,13 +19,12 @@ public class RedisService {
     @Autowired
     private JedisPool jedisPool;
 
-    public <T> T get(String prefix,String key,Class<T> cls){
+    public <T> T get(String key,Class<T> cls){
         T obj = null;
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-            String rkey = prefix + ":" + key;
-            String result = jedis.get(rkey);
+            String result = jedis.get(key);
             obj = strToBean(result,cls);
         } catch (Exception e) {
             LOGGER.error("获取redis值出错",e);
@@ -36,12 +35,11 @@ public class RedisService {
         return obj;
     }
 
-    public <T> boolean set(String prefix,String key,T obj){
+    public <T> boolean set(String key,T obj){
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-            String rkey = prefix + " : " + key;
-            jedis.set(rkey,beanToStr(obj));
+            jedis.set(key,beanToStr(obj));
 
             return true;
         } catch (Exception e) {
