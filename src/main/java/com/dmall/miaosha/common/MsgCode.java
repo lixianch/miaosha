@@ -5,6 +5,8 @@ package com.dmall.miaosha.common;
  */
 public class MsgCode {
     public static final MsgCode SYS_ERROR = new MsgCode("9999","系统错误，请稍后重试");
+    //注册模块
+    public static final MsgCode REG_ERROR = new MsgCode("1001","注册失败");
     private String code;
     private String msg;
     private MsgCode(String code,String msg){

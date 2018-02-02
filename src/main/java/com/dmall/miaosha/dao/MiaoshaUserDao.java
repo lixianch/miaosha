@@ -16,5 +16,5 @@ public interface MiaoshaUserDao {
     public MiaoshaUser getById(@Param("id") Long id);
     @Insert("insert into miaosha_user(nickname,login_name,register_phone,password,salt,head,register_date) values(#{nickname},#{loginName},#{registerPhone}," +
             "#{password},#{salt},#{head},now())")
-    public void save(User user);
+    public void save(MiaoshaUser user);
 }
