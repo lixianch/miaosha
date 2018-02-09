@@ -12,7 +12,7 @@ public class RegisterUserVo {
     @NotNull(message = "登录名为空")
     private String loginName;
     @NotNull(message = "注册手机号为空")
-    @Pattern(regexp = "^1\\\\d{10}$",message = "注册手机号不合法")
+    @Pattern(regexp = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$",message = "注册手机号不合法")
     private String registerPhone;
     @NotNull(message = "密码为空")
     private String password;
