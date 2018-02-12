@@ -17,4 +17,7 @@ public interface MiaoshaUserDao {
     @Insert("insert into miaosha_user(nickname,login_name,register_phone,password,salt,head,register_date) values(#{nickname},#{loginName},#{registerPhone}," +
             "#{password},#{salt},#{head},now())")
     public void save(MiaoshaUser user);
+
+    @Select("SELECT * FROM miaosha_user WHERE login_name=#{loginName}")
+    public MiaoshaUser getByLoginName(@Param("loginName") String loginName);
 }

@@ -50,6 +50,20 @@ public class RedisService {
         return false;
     }
 
+    public <T> boolean set(String key,T obj,Integer expireTime){
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            jedis.setex(key,expireTime,beanToStr(obj));
+            return true;
+        } catch (Exception e) {
+            LOGGER.error("设置redis值出错",e);
+        } finally {
+            returnPool(jedis);
+        }
+        return false;
+    }
+
     private <T> T strToBean(String s,Class<T> cls){
         if(StringUtils.isBlank(s) || cls == null){
             return null;
